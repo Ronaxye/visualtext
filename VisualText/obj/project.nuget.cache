@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "v1bsjd5fg351Dzsasy4kAc5v8rN6aV/mJ0QWquYOH+PJYTiUwKIuZiD25as1YbWpTn38wVrMcgD52Zu5O6LL8w==",
+  "dgSpecHash": "tFWOJ0LpM9oyVHkpArkjTyfqmKO6/QVgPwTkKdyn13bk9a3e74HT/KbJyOhDplA3QNTQtMw8RazEMEWGQKToXQ==",
   "success": true,
   "projectFilePath": "C:\\VisualText\\VisualText\\VisualText.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\ZEROx\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\5.0.6\\microsoft.netcore.app.runtime.win-x64.5.0.6.nupkg.sha512",
+    "C:\\Users\\ZEROx\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\5.0.6\\microsoft.windowsdesktop.app.runtime.win-x64.5.0.6.nupkg.sha512",
+    "C:\\Users\\ZEROx\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\5.0.6\\microsoft.aspnetcore.app.runtime.win-x64.5.0.6.nupkg.sha512"
+  ],
   "logs": []
 }

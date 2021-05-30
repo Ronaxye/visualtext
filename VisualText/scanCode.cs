@@ -16,8 +16,13 @@ namespace VisualText
         public static int numberOfLines = 0;
         public static int blockIndex = 0;
         public static bool isInsideForLoop = false;
-        //original.SplitByFirst("keyword");
+        public static bool isWaitingForInput = false;
+        private static string inputType = "";
+        private static string inputContent = "";
+        private static string inputVarName = "";
 
+        //original.SplitByFirst("keyword");
+        /*
         public static string[] SplitByFirst(this string original, string keyword)
         {
             string[] result = new string[2];
@@ -38,6 +43,7 @@ namespace VisualText
 
             return result;
         }
+        */
 
         public static void start()
         {
@@ -74,13 +80,17 @@ namespace VisualText
             {
                 basics.println(curLine);
             }
+            else if (curLine.StartsWith("printvar"))
+            {
+                basics.printvar(curLine);
+            }
             else if (curLine.StartsWith("print"))
             {
                 basics.print(curLine);
             }
             else if (curLine.StartsWith("input"))
             {
-                basics.input(curLine);
+                //
             }
             else if (curLine.StartsWith("add"))
             {
@@ -145,8 +155,24 @@ namespace VisualText
             {
                 logic.newFor(curLine);
             }
-            else if (curLine.StartsWith("while")) { 
+            else if (curLine.StartsWith("while"))
+            { 
                 logic.newWhile(curLine);
+            }
+            else if (curLine.StartsWith("file") || curLine.StartsWith("folder"))
+            {
+                file.determine(curLine);
+            }
+            else if (curLine.StartsWith("ui"))
+            {
+
+            }
+            else if (curLine.StartsWith("mars"))
+            {
+                if (curLine.Contains("ping"))
+                {
+                    drawButton.mars();
+                }
             }
         }
 
@@ -168,9 +194,37 @@ namespace VisualText
                 drawButton.println(newCurLine);
             }
 
-            public static void input(string curLine)
+            public static void printvar(string curLine)
             {
-                //await Task.Delay(1000);
+                curLine = curLine.Replace(" ", "");
+                curLine = curLine.Remove(0, 9);
+                string newCurLine = curLine.Remove(curLine.Length - 2);
+                string getVariable = Form2.storedVariables[newCurLine];
+                Debug.WriteLine(getVariable);
+                if (getVariable.StartsWith("string"))
+                {
+                    getVariable = getVariable.Remove(0, 7);
+                }
+                else if (getVariable.StartsWith("int"))
+                {
+                    getVariable = getVariable.Remove(0, 4);
+                }
+                else if (getVariable.StartsWith("long"))
+                {
+                    getVariable = getVariable.Remove(0, 5);
+                }
+                else if (getVariable.StartsWith("double"))
+                {
+                    getVariable = getVariable.Remove(0, 7);
+                }
+                else if (getVariable.StartsWith("boolean"))
+                {
+                    getVariable = getVariable.Remove(0, 8);
+                }
+                getVariable = getVariable.Substring(2);
+                getVariable = getVariable.Remove(getVariable.Length - 2);
+                Form2.codeOutput.Text += "\n" + (getVariable.Trim());
+                drawButton.printvar(newCurLine);
             }
 
             public static void add(string curLine)
@@ -241,10 +295,8 @@ namespace VisualText
                 string type = "string";
                 curLine = curLine.Remove(0, 7);
                 string[] varName = curLine.Split("=");
-                varName[0].Trim();
-                varName[1].Trim();
                 string finalString = (type + "-" + varName[1]);
-                Form2.storedVariables.Add(varName[0], finalString);
+                Form2.storedVariables.Add(varName[0].Trim(), finalString.Trim());
                 drawButton.stringB(varName[0], varName[1]);
             }
 
@@ -253,10 +305,8 @@ namespace VisualText
                 string type = "int";
                 curLine = curLine.Remove(0, 4);
                 string[] varName = curLine.Split("=");
-                varName[0].Trim();
-                varName[1].Trim();
                 string finalString = (type + "-" + varName[1]);
-                Form2.storedVariables.Add(varName[0], finalString);
+                Form2.storedVariables.Add(varName[0].Trim(), finalString.Trim());
                 drawButton.intB(varName[0], varName[1]);
             }
 
@@ -265,10 +315,8 @@ namespace VisualText
                 string type = "long";
                 curLine = curLine.Remove(0, 5);
                 string[] varName = curLine.Split("=");
-                varName[0].Trim();
-                varName[1].Trim();
                 string finalString = (type + "-" + varName[1]);
-                Form2.storedVariables.Add(varName[0], finalString);
+                Form2.storedVariables.Add(varName[0].Trim(), finalString.Trim());
                 drawButton.longB(varName[0], varName[1]);
             }
 
@@ -277,10 +325,8 @@ namespace VisualText
                 string type = "double";
                 curLine = curLine.Remove(0, 7);
                 string[] varName = curLine.Split("=");
-                varName[0].Trim();
-                varName[1].Trim();
                 string finalString = (type + "-" + varName[1]);
-                Form2.storedVariables.Add(varName[0], finalString);
+                Form2.storedVariables.Add(varName[0].Trim(), finalString.Trim());
                 drawButton.doubleB(varName[0], varName[1]);
             }
 
@@ -289,10 +335,8 @@ namespace VisualText
                 string type = "boolean";
                 curLine = curLine.Remove(0, 8);
                 string[] varName = curLine.Split("=");
-                varName[0].Trim();
-                varName[1].Trim();
                 string finalString = (type + "-" + varName[1]);
-                Form2.storedVariables.Add(varName[0], finalString);
+                Form2.storedVariables.Add(varName[0].Trim(), finalString.Trim());
                 drawButton.booleanB(varName[0], varName[1]);
             }
         }
@@ -301,13 +345,13 @@ namespace VisualText
         {
             public static void newFor(string curLine)
             {
-                //for i in range (3, 7) :: newmethod();
+                //for i in range (3, 7) :: func1(); : func2(); : func3();
                 
                 // a ||  b  : c : d
 
                 string[] PARAMETERS_CODETOLOOP = curLine.Split("::");
                 PARAMETERS_CODETOLOOP[0].Trim();
-                PARAMETERS_CODETOLOOP[1].Trim();
+                string[] MULTIPLE_FUNCTIONS = PARAMETERS_CODETOLOOP[1].Split(":");
 
                 PARAMETERS_CODETOLOOP[0].Replace("for", "");
                 PARAMETERS_CODETOLOOP[0].Replace("in", "");
@@ -329,11 +373,14 @@ namespace VisualText
                 isInsideForLoop = true;
                 for (int i = 0; i < timesToLoop; ++i)
                 {
-                    scanCode.determine(PARAMETERS_CODETOLOOP[1].Trim());
+                    for (int ii = 0; ii < MULTIPLE_FUNCTIONS.Length; ++ii)
+                    {
+                        scanCode.determine(MULTIPLE_FUNCTIONS[ii].Trim());
+                    }
                 }
                 isInsideForLoop = false;
 
-                drawButton.forB(timesToLoop, PARAMETERS_CODETOLOOP[1]);
+                drawButton.forB(timesToLoop, MULTIPLE_FUNCTIONS);
 
 
 
@@ -385,12 +432,132 @@ namespace VisualText
                 */
             }
 
-            public static void newWhile(string newCurLine)
+            public static void newWhile(string curLine)
             {
+                string[] PARAMETERS_CODETOLOOP = curLine.Split("::");
+                PARAMETERS_CODETOLOOP[0].Trim();
+                string[] MULTIPLE_FUNCTIONS = PARAMETERS_CODETOLOOP[1].Split(":");
 
+                isInsideForLoop = true;
+                //might wanna fix this btw
+                for (int i = 0; i < MULTIPLE_FUNCTIONS.Length; ++i)
+                {
+                    scanCode.determine(MULTIPLE_FUNCTIONS[i].Trim());
+                }
+                isInsideForLoop = false;
+
+                drawButton.whileB(PARAMETERS_CODETOLOOP[0].Replace("while ", "").Trim(), MULTIPLE_FUNCTIONS, curLine);
             }
 
         }
+
+        public static class file
+        {
+            public static void determine(string curLine)
+            {
+                if (curLine.StartsWith("file.create"))
+                {
+                    curLine = curLine.Remove(0, 13);
+                    curLine = curLine.Remove(curLine.Length - 3);
+                    Debug.WriteLine(curLine);
+                    create(curLine);
+                }
+                else if (curLine.StartsWith("file.append"))
+                {
+                    curLine = curLine.Remove(0, 13);
+                    curLine = curLine.Remove(curLine.Length - 3);
+                    Debug.WriteLine(curLine);
+                    append(curLine);
+                }
+
+                else if (curLine.StartsWith("file.read"))
+                {
+                    curLine = curLine.Remove(0, 11);
+                    curLine = curLine.Remove(curLine.Length - 3);
+                    Debug.WriteLine(curLine);
+                    read(curLine);
+                }
+                else if (curLine.StartsWith("folder.create"))
+                {
+                    curLine = curLine.Remove(0, 15);
+                    curLine = curLine.Remove(curLine.Length - 3);
+                    Debug.WriteLine(curLine);
+                    folder(curLine);
+                }
+            }
+
+            public static void create(string path)
+            {
+                Debug.WriteLine(path);
+                try
+                {
+                    FileStream fs = File.Create(path);
+                    fs.Close();
+                    
+                }
+                catch (Exception Ex)
+                {
+                    Form2.codeOutput.Text += "\nError occured creating file " + path;
+                }
+                drawButton.createFileB(path);
+            }
+
+            public static void append(string path)
+            {
+                string[] splitted = path.Split(",");
+                splitted[0] = splitted[0].Replace("\"", "");
+                //splitted[0] = splitted[0].Remove(splitted[0].Length - 1);
+                splitted[1] = splitted[1].Remove(0, 2);
+                //splitted[1] = splitted[1].Remove(splitted[1].Length - 1);
+                Debug.WriteLine(splitted[0] + " " + splitted[1]);
+                try
+                {
+                    StreamWriter sw = File.AppendText(splitted[0]);
+                    sw.WriteLine(splitted[1]);
+                    sw.Close();
+                }
+                catch (Exception Ex)
+                {
+                    Form2.codeOutput.Text += "\nError occured writing to file " + path;
+                }
+                drawButton.writeFileB(splitted[1], splitted[0]);
+
+            }
+
+            public static void read(string path)
+            {
+                string[] splitted = path.Split(",");
+                splitted[0] = splitted[0].Replace("\"", "");
+                splitted[1] = splitted[1].Trim().Remove(0, 1);
+                splitted[1] = splitted[1].Replace(" ", "");
+                int lineNumber = int.Parse(splitted[1]) - 1;
+                Debug.WriteLine(splitted[0] + " " + splitted[1]);
+                try
+                {
+                    Form2.codeOutput.Text += "\n" + File.ReadLines(splitted[0]).Skip(lineNumber).Take(1).First();
+                }
+                catch (Exception Ex)
+                {
+                    Form2.codeOutput.Text += "\nError occured reading from file " + path;
+                }
+                drawButton.readFileB(lineNumber.ToString(), splitted[0]);
+            }
+
+            public static void folder(string path)
+            {
+                Debug.WriteLine(path);
+                try
+                {
+                    Directory.CreateDirectory(path);
+                }
+                catch (Exception Ex)
+                {
+
+                }
+                drawButton.createFolderB(path);
+            }
+        }
+        //public 
 
         public static class drawButton
         {
@@ -404,10 +571,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 30);
                     newBlock.Text = ("Output " + newCurLine);
                     newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
                     Form2.blocks.AddLast(newBlock);
                     ++blockIndex;
                 }
@@ -417,13 +585,46 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 30);
                     newBlock.Text = ("Output " + newCurLine + " to a new line");
                     newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
                     Form2.blocks.AddLast(newBlock);
                     ++blockIndex;
                 }
+            }
+
+            public static void printvar(string newCurLine)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Output value of " + newCurLine);
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
+            }
+
+            public static void inputB(string TYPE, string VAR_NAME)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Get a " + TYPE +  " from the user and\n store it to " + VAR_NAME);
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                    //return 1;
+                }
+                //return 0;
             }
 
             public static void addB(string[] aBunchOfVariables)
@@ -431,7 +632,7 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
                     newBlock.Text = ("Add ");
                     for (int i = 0; i < aBunchOfVariables.Length; ++i)
@@ -444,6 +645,7 @@ namespace VisualText
                     }
                     newBlock.Text += ("\n together");
                     newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
@@ -454,10 +656,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 30);
                     newBlock.Text = ("Subtract " + aBunchOfVariables[0] + " from " + aBunchOfVariables[1]);
                     newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
                     Form2.blocks.AddLast(newBlock);
                     ++blockIndex;
                 }
@@ -468,7 +671,7 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
                     newBlock.Text = ("Multiply ");
                     for (int i = 0; i < aBunchOfVariables.Length; ++i)
@@ -481,6 +684,7 @@ namespace VisualText
                     }
                     newBlock.Text += ("\n together");
                     newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
@@ -491,10 +695,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 30);
                     newBlock.Text = ("Divide " + aBunchOfVariables[0] + " by " + aBunchOfVariables[1]);
                     newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
                     Form2.blocks.AddLast(newBlock);
                     ++blockIndex;
                 }
@@ -505,10 +710,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 30);
                     newBlock.Text = ("Get " + aBunchOfVariables[0] + " modulo " + aBunchOfVariables[1]);
                     newBlock.Font = new Font("Bahnschrift", 12);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#1f7a20");
                     Form2.blocks.AddLast(newBlock);
                     ++blockIndex;
                 }
@@ -519,10 +725,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
                     newBlock.Text = ("Create a string called " + index1 + "\n and set its value to " + index2);
                     newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
@@ -533,10 +740,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
                     newBlock.Text = ("Create an integer called " + index1 + "\n and set its value to " + index2);
                     newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
@@ -547,10 +755,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
                     newBlock.Text = ("Create a big int called " + index1 + "\n and set its value to " + index2);
                     newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
@@ -561,10 +770,11 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
                     newBlock.Text = ("Create a double called " + index1 + "\n and set its value to " + index2);
                     newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
@@ -575,27 +785,133 @@ namespace VisualText
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
                     newBlock.Text = ("Create a boolean called " + index1 + "\n and set its value to " + index2);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
+            }
+
+            public static void forB(int numOfTimesToRun, string[] aBunchOfVariables)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = "";
+                    for (int i = 0; i < aBunchOfVariables.Length; ++i)
+                    {
+                        newBlock.Text += aBunchOfVariables[i].ToString() + ", ";
+                        if (i == 2)
+                        {
+                            newBlock.Text += "\n";
+                        }
+                    }
+                    newBlock.Text += numOfTimesToRun + " times";
+                    newBlock.BackColor = ColorTranslator.FromHtml("#a108c7");
                     newBlock.Font = new Font("Bahnschrift", 10);
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
             }
 
-            public static void forB(int numOfTimesToRun, string codeToLoop)
+            public static void whileB(string whileParam, string[] aBunchOfVariables, string curLine)
             {
                 if (!isInsideForLoop)
                 {
                     Button newBlock = new Button();
-                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
                     newBlock.Size = new Size((resized25 - 50), 60);
-                    newBlock.Text = ("Run " + codeToLoop.Trim() + "\n" + numOfTimesToRun + " Times");
+                    newBlock.Text = "While " + whileParam + ", run";
+                    for (int i = 0; i < aBunchOfVariables.Length; ++i)
+                    {
+                        newBlock.Text += aBunchOfVariables[i].ToString() + ", ";
+                        if (i == 2)
+                        {
+                            newBlock.Text += "\n";
+                        }
+                    }
+                    newBlock.BackColor = ColorTranslator.FromHtml("#a108c7");
                     newBlock.Font = new Font("Bahnschrift", 10);
+                    Form2.blocks.AddLast(newBlock);
+                    Debug.WriteLine("2456789");
+                    blockIndex += 2;
+                }
+            }
+
+            public static void createFileB(string path)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Create a file at " + path);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
+            }
+
+            public static void createFolderB(string path)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Create a folder at " + path);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
+            }
+
+            public static void writeFileB(string data, string path)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Write " + data + " to\n" + path);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
                     Form2.blocks.AddLast(newBlock);
                     blockIndex += 2;
                 }
+            }
+
+            public static void readFileB(string lineN, string path)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (90 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Read line " + lineN + " from\n" + path);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    newBlock.BackColor = ColorTranslator.FromHtml("#001fbd");
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
+            }
+
+            public static void mars()
+            {
+                Form2.codeOutput.Text += ("dab.mars(thingy) = stuff.(MARS_GET_IN_VC)    --thing 2021");
+                Form2.codeOutput.Text += ("Penguin was never in vc, and Mars doesn't respond to pings  --thingy 2021");
+                Form2.codeOutput.Text += ("Mars kept eating raw stuff and goes away for like 2 hours");
+                Form2.codeOutput.Text += ("Chris said \"this\" and not anything specific");
+                Form2.codeEditor.Text += ("note from Chris, when i say \"this\" i mean the keyword \"this\", for example, \"this.Form2.Visible = true;\"");
+                easterEgg easterEgg = new easterEgg();
+                easterEgg.Show();
             }
         }
     }

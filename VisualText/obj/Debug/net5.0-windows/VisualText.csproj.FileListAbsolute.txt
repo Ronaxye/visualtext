@@ -20,3 +20,16 @@ C:\VisualText\VisualText\obj\Debug\net5.0-windows\ref\VisualText.dll
 C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.pdb
 C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.genruntimeconfig.cache
 C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.splashScreen.resources
+C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.easterEgg.resources
+C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.tutorial.resources
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\WelcomeTutorial.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T1.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T10.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T2.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T3.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T4.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T5.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T6.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T7.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T8.rtf
+C:\VisualText\VisualText\bin\Debug\net5.0-windows\Resources\T9.rtf

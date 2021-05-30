@@ -4,6 +4,9 @@
     <_LastSelectedProfileId>X:\VisualText\VisualText\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="easterEgg.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="editBlock.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -14,6 +17,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="splashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="tutorial.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

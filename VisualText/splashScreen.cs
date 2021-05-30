@@ -38,7 +38,7 @@ namespace VisualText
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Size = new Size(575, 340);
 
-            await Task.Delay(2500);
+            await Task.Delay(2000);
             for (int i = 0; i < 20; ++i)
             {
                 this.Opacity -= 0.05f;

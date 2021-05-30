@@ -26,7 +26,7 @@ namespace VisualText
                         System.Media.SystemSounds.Asterisk.Play();
                     }
                     FileStream fs = File.Create(Form2.filePath);
-                    //Form2.openfileTTSL.Text = ("Currently open file: " + Form2.filePath);
+                    Form2.openfileTTSL.Text = ("Currently open file: " + Form2.filePath);
                     fs.Close();
                 }
                 catch (Exception Ex)

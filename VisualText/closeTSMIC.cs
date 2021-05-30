@@ -12,6 +12,14 @@ namespace VisualText
         {
             Form2.codeEditor.Text = "";
             Form2.codeOutput.Text = "";
+            Form2.openfileTTSL.Text = "";
+            //
+            if (Form2.filePath.Equals(""))
+            {
+                saveTSMIC saveTSMICN = new saveTSMIC();
+                saveTSMICN.saveTSMIF();
+            }
+            //
             for (int i = 0; i < Form2.blocks.Count(); ++i)
             {
                 Form2.blocks.ElementAt(i).Visible = false;

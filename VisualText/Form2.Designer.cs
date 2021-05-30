@@ -35,16 +35,15 @@ namespace VisualText
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.titleTTSL = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.openfileTTSL = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.lightdarkTTSB = new System.Windows.Forms.ToolStripButton();
             this.runBtn = new System.Windows.Forms.ToolStripButton();
-            this.stopBtn = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.tutorialButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.minTTSB = new System.Windows.Forms.ToolStripButton();
             this.maxTTSB = new System.Windows.Forms.ToolStripButton();
             this.closeTTSB = new System.Windows.Forms.ToolStripButton();
             this.closeTSB = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.minimiseTSB = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.maximiseTSB = new System.Windows.Forms.ToolStripButton();
@@ -57,6 +56,7 @@ namespace VisualText
             this.basicDDB = new System.Windows.Forms.ToolStripDropDownButton();
             this.printlnTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.printTSMI = new System.Windows.Forms.ToolStripMenuItem();
+            this.outputVariableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inputTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.mathTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.addSTSMI = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,6 +95,20 @@ namespace VisualText
             this.useriDDB = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.createFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writeToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createDirectoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newClassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newFunctionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newButtonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newLabelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTextboxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            Form2.INPUTBOX = new System.Windows.Forms.TextBox();
+            Form2.INPUTBTN = new System.Windows.Forms.Button();
+            Form2.openfileTTSL = new System.Windows.Forms.ToolStripLabel();
             Form2.resLabel = new System.Windows.Forms.Label();
             Form2.codeEditor = new System.Windows.Forms.RichTextBox();
             Form2.codeOutput = new System.Windows.Forms.RichTextBox();
@@ -109,17 +123,17 @@ namespace VisualText
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.titleTTSL,
             this.toolStripSeparator4,
-            this.openfileTTSL,
+            Form2.openfileTTSL,
             this.lightdarkTTSB,
             this.runBtn,
-            this.stopBtn,
-            this.toolStripSeparator5,
+            this.tutorialButton,
+            this.toolStripSeparator1,
             this.minTTSB,
             this.maxTTSB,
             this.closeTTSB});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1217, 35);
+            this.toolStrip1.Size = new System.Drawing.Size(1217, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.onMove);
             // 
@@ -127,20 +141,18 @@ namespace VisualText
             // 
             this.titleTTSL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.titleTTSL.Name = "titleTTSL";
-            this.titleTTSL.Size = new System.Drawing.Size(123, 32);
+            this.titleTTSL.Size = new System.Drawing.Size(123, 22);
             this.titleTTSL.Text = "VisualText Alpha v0.10";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 35);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // openfileTTSL
+            // toolStripSeparator5
             // 
-            this.openfileTTSL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.openfileTTSL.Name = "openfileTTSL";
-            this.openfileTTSL.Size = new System.Drawing.Size(102, 32);
-            this.openfileTTSL.Text = "Current open file: ";
+            //this.toolStripSeparator5.Name = "toolStripSeparator5";
+            //this.toolStripSeparator5.Size = new System.Drawing.Size(6, 35);
             // 
             // lightdarkTTSB
             // 
@@ -154,26 +166,26 @@ namespace VisualText
             // runBtn
             // 
             this.runBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.runBtn.Image = ((System.Drawing.Image)(resources.GetObject("runBtn.Image")));
+            this.runBtn.Image = global::VisualText.Properties.Resources.Play_Button_Transparent;
             this.runBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.runBtn.Name = "runBtn";
             this.runBtn.Size = new System.Drawing.Size(32, 32);
             this.runBtn.Text = "toolStripButton1";
             this.runBtn.Click += new System.EventHandler(this.runProgram);
             // 
-            // stopBtn
+            // tutorialButton
             // 
-            this.stopBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.stopBtn.Image = ((System.Drawing.Image)(resources.GetObject("stopBtn.Image")));
-            this.stopBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.stopBtn.Name = "stopBtn";
-            this.stopBtn.Size = new System.Drawing.Size(32, 32);
-            this.stopBtn.Text = "toolStripButton1";
+            this.tutorialButton.Image = ((System.Drawing.Image)(resources.GetObject("tutorialButton.Image")));
+            this.tutorialButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tutorialButton.Name = "tutorialButton";
+            this.tutorialButton.Size = new System.Drawing.Size(114, 32);
+            this.tutorialButton.Text = "Help/Tutorials";
+            this.tutorialButton.Click += new System.EventHandler(this.launchTutorial);
             // 
-            // toolStripSeparator5
+            // toolStripSeparator1
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 35);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 6);
             // 
             // minTTSB
             // 
@@ -209,11 +221,6 @@ namespace VisualText
             // 
             this.closeTSB.Name = "closeTSB";
             this.closeTSB.Size = new System.Drawing.Size(23, 23);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 6);
             // 
             // minimiseTSB
             // 
@@ -285,6 +292,7 @@ namespace VisualText
             this.basicDDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.printlnTSMI,
             this.printTSMI,
+            this.outputVariableToolStripMenuItem,
             this.inputTSMI,
             this.mathTSMI,
             this.randomTSMI});
@@ -308,6 +316,13 @@ namespace VisualText
             this.printTSMI.Size = new System.Drawing.Size(197, 22);
             this.printTSMI.Text = "Output (to current line)";
             this.printTSMI.Click += new System.EventHandler(this.printTSMIF);
+            // 
+            // outputVariableToolStripMenuItem
+            // 
+            this.outputVariableToolStripMenuItem.Name = "outputVariableToolStripMenuItem";
+            this.outputVariableToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+            this.outputVariableToolStripMenuItem.Text = "Output Variable";
+            this.outputVariableToolStripMenuItem.Click += new System.EventHandler(this.printvarTSMIF);
             // 
             // inputTSMI
             // 
@@ -502,6 +517,7 @@ namespace VisualText
             this.whileToolStripMenuItem.Name = "whileToolStripMenuItem";
             this.whileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.whileToolStripMenuItem.Text = "While";
+            this.whileToolStripMenuItem.Click += new System.EventHandler(this.whileToolStripMenuItem_Click);
             // 
             // ifToolStripMenuItem
             // 
@@ -568,6 +584,11 @@ namespace VisualText
             // 
             // fileioDDB
             // 
+            this.fileioDDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createFileToolStripMenuItem,
+            this.writeToFileToolStripMenuItem,
+            this.readFromFileToolStripMenuItem,
+            this.createDirectoryToolStripMenuItem});
             this.fileioDDB.Image = ((System.Drawing.Image)(resources.GetObject("fileioDDB.Image")));
             this.fileioDDB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.fileioDDB.Name = "fileioDDB";
@@ -577,6 +598,9 @@ namespace VisualText
             // 
             // oopDDB
             // 
+            this.oopDDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newClassToolStripMenuItem,
+            this.newFunctionToolStripMenuItem});
             this.oopDDB.Image = ((System.Drawing.Image)(resources.GetObject("oopDDB.Image")));
             this.oopDDB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.oopDDB.Name = "oopDDB";
@@ -585,6 +609,12 @@ namespace VisualText
             // 
             // useriDDB
             // 
+            this.useriDDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newWindowToolStripMenuItem,
+            this.newButtonToolStripMenuItem,
+            this.newLabelToolStripMenuItem,
+            this.newImageToolStripMenuItem,
+            this.newTextboxToolStripMenuItem});
             this.useriDDB.Image = ((System.Drawing.Image)(resources.GetObject("useriDDB.Image")));
             this.useriDDB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.useriDDB.Name = "useriDDB";
@@ -602,7 +632,7 @@ namespace VisualText
             this.fileioDDB,
             this.oopDDB,
             this.useriDDB});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 35);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 25);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.Size = new System.Drawing.Size(1217, 30);
             this.toolStrip2.TabIndex = 0;
@@ -619,6 +649,86 @@ namespace VisualText
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SizerMouseDown);
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SizerMouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SizerMouseUp);
+            // 
+            // createFileToolStripMenuItem
+            // 
+            this.createFileToolStripMenuItem.Name = "createFileToolStripMenuItem";
+            this.createFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createFileToolStripMenuItem.Text = "Create file";
+            this.createFileToolStripMenuItem.Click += new System.EventHandler(this.createFileToolStripMenuItemF);
+            // 
+            // writeToFileToolStripMenuItem
+            // 
+            this.writeToFileToolStripMenuItem.Name = "writeToFileToolStripMenuItem";
+            this.writeToFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.writeToFileToolStripMenuItem.Text = "Write to file";
+            this.writeToFileToolStripMenuItem.Click += new System.EventHandler(this.writeToFileToolStripMenuItemF);
+
+            // 
+            // readFromFileToolStripMenuItem
+            // 
+            this.readFromFileToolStripMenuItem.Name = "readFromFileToolStripMenuItem";
+            this.readFromFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.readFromFileToolStripMenuItem.Text = "Read from file";
+            this.readFromFileToolStripMenuItem.Click += new System.EventHandler(this.readFromFileToolStripMenuItemF);
+
+            // 
+            // createDirectoryToolStripMenuItem
+            // 
+            this.createDirectoryToolStripMenuItem.Name = "createDirectoryToolStripMenuItem";
+            this.createDirectoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.createDirectoryToolStripMenuItem.Text = "Create directory";
+            this.createDirectoryToolStripMenuItem.Click += new System.EventHandler(this.createDirectoryToolStripMenuItemF);
+
+            // 
+            // newClassToolStripMenuItem
+            // 
+            this.newClassToolStripMenuItem.Name = "newClassToolStripMenuItem";
+            this.newClassToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newClassToolStripMenuItem.Text = "New class";
+            //this.newClassToolStripMenuItem.Click += new System.EventHandler(this.newClassToolStripMenuItemF);
+            // 
+            // newFunctionToolStripMenuItem
+            // 
+            this.newFunctionToolStripMenuItem.Name = "newFunctionToolStripMenuItem";
+            this.newFunctionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newFunctionToolStripMenuItem.Text = "New function";
+            //this.newFunctionToolStripMenuItem.Click += new System.EventHandler(this.newFunctionToolStripMenuItemF);
+            // 
+            // newWindowToolStripMenuItem
+            // 
+            this.newWindowToolStripMenuItem.Name = "newWindowToolStripMenuItem";
+            this.newWindowToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newWindowToolStripMenuItem.Text = "New window";
+            this.newWindowToolStripMenuItem.Click += new System.EventHandler(this.newWindowToolStripMenuItemF);
+            // 
+            // newButtonToolStripMenuItem
+            // 
+            this.newButtonToolStripMenuItem.Name = "newButtonToolStripMenuItem";
+            this.newButtonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newButtonToolStripMenuItem.Text = "New button";
+            this.newButtonToolStripMenuItem.Click += new System.EventHandler(this.newButtonToolStripMenuItemF);
+            // 
+            // newLabelToolStripMenuItem
+            // 
+            this.newLabelToolStripMenuItem.Name = "newLabelToolStripMenuItem";
+            this.newLabelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newLabelToolStripMenuItem.Text = "New label"; 
+            this.newLabelToolStripMenuItem.Click += new System.EventHandler(this.newLabelToolStripMenuItemF);
+            // 
+            // newImageToolStripMenuItem
+            // 
+            this.newImageToolStripMenuItem.Name = "newImageToolStripMenuItem";
+            this.newImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newImageToolStripMenuItem.Text = "New image";
+            this.newImageToolStripMenuItem.Click += new System.EventHandler(this.newImageToolStripMenuItemF);
+            // 
+            // newTextboxToolStripMenuItem
+            // 
+            this.newTextboxToolStripMenuItem.Name = "newTextboxToolStripMenuItem";
+            this.newTextboxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newTextboxToolStripMenuItem.Text = "New textbox";
+            this.newTextboxToolStripMenuItem.Click += new System.EventHandler(this.newTextBoxToolStripMenuItemF);
             // 
             // Form2
             // 
@@ -693,13 +803,12 @@ namespace VisualText
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripLabel titleTTSL;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripLabel openfileTTSL;
+        public static System.Windows.Forms.ToolStripLabel openfileTTSL;
         private System.Windows.Forms.ToolStripButton lightdarkTTSB;
         private System.Windows.Forms.ToolStripMenuItem longVTSMI;
         private System.Windows.Forms.RichTextBox code;
         public static System.Windows.Forms.RichTextBox codeOutput;
         private System.Windows.Forms.ToolStripButton runBtn;
-        private System.Windows.Forms.ToolStripButton stopBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem ifToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem elseToolStripMenuItem;
@@ -712,5 +821,20 @@ namespace VisualText
         private System.Windows.Forms.ToolStripMenuItem notEqualToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lessThanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem greaterThanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton tutorialButton;
+        public static System.Windows.Forms.TextBox INPUTBOX;
+        public static System.Windows.Forms.Button INPUTBTN;
+        private System.Windows.Forms.ToolStripMenuItem outputVariableToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writeToFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem readFromFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createDirectoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newClassToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newFunctionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newButtonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newLabelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newImageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newTextboxToolStripMenuItem;
     }
 }

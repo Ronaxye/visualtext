@@ -83,10 +83,180 @@ namespace VisualText.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap OSIRIS_Mars_true_color {
+            get {
+                object obj = ResourceManager.GetObject("OSIRIS_Mars_true_color", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Play_Button_Transparent {
+            get {
+                object obj = ResourceManager.GetObject("Play_Button_Transparent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap splashScreen {
             get {
                 object obj = ResourceManager.GetObject("splashScreen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\colortbl ;\red0\green0\blue255;}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw36116\pich20294\picwgoal8640\pichgoal4860 
+        ///0100090000034af81700000021f8170000000400000003010800050000000b0200000000050000
+        ///000c02ff025505030000001e000400000007010400040000000701040021f81700410b2000cc00
+        ///ff02550500000000ff025505000000002800000055050000ff02000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T1 {
+            get {
+                return ResourceManager.GetString("T1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw3784\pich3651\picwgoal2145\pichgoal2070 
+        ///0100090000031a2900000000f128000000000400000003010800050000000b0200000000050000
+        ///000c028a008f00030000001e0004000000070104000400000007010400f1280000410b2000cc00
+        ///8a008f00000000008a008f0000000000280000008f0000008a0000000100080000000000000000
+        ///0000000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T10 {
+            get {
+                return ResourceManager.GetString("T10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw36116\pich20294\picwgoal8640\pichgoal4860 
+        ///0100090000034af81700000021f8170000000400000003010800050000000b0200000000050000
+        ///000c02ff025505030000001e000400000007010400040000000701040021f81700410b2000cc00
+        ///ff02550500000000ff025505000000002800000055050000ff020000010018000000000000f02f
+        ///00000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T2 {
+            get {
+                return ResourceManager.GetString("T2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw36116\pich20294\picwgoal8640\pichgoal4860 
+        ///0100090000034af81700000021f8170000000400000003010800050000000b0200000000050000
+        ///000c02ff025505030000001e000400000007010400040000000701040021f81700410b2000cc00
+        ///ff02550500000000ff025505000000002800000055050000ff020000010018000000000000f02f
+        ///00000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T3 {
+            get {
+                return ResourceManager.GetString("T3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw4260\pich3175\picwgoal2415\pichgoal1800 
+        ///010009000003ba71000000009171000000000400000003010800050000000b0200000000050000
+        ///000c027800a100030000001e000400000007010400040000000701040091710000410b2000cc00
+        ///7800a100000000007800a1000000000028000000a1000000780000000100180000000000e0e200
+        ///0000000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T4 {
+            get {
+                return ResourceManager.GetString("T4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw5186\pich4233\picwgoal2940\pichgoal2400 
+        ///0100090000038a3f00000000613f000000000400000003010800050000000b0200000000050000
+        ///000c02a000c400030000001e0004000000070104000400000007010400613f0000410b2000cc00
+        ///a000c40000000000a000c4000000000028000000c4000000a00000000100080000000000000000
+        ///0000000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T5 {
+            get {
+                return ResourceManager.GetString("T5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw5609\pich5398\picwgoal3180\pichgoal3060 
+        ///010009000003c256000000009956000000000400000003010800050000000b0200000000050000
+        ///000c02cc00d400030000001e000400000007010400040000000701040099560000410b2000cc00
+        ///cc00d40000000000cc00d4000000000028000000d4000000cc0000000100080000000000000000
+        ///0000000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T6 {
+            get {
+                return ResourceManager.GetString("T6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw4471\pich3122\picwgoal2535\pichgoal1770 
+        ///010009000003ee2900000000c529000000000400000003010800050000000b0200000000050000
+        ///000c027600a900030000001e0004000000070104000400000007010400c5290000410b2000cc00
+        ///7600a900000000007600a9000000000028000000a9000000760000000100080000000000000000
+        ///0000000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T7 {
+            get {
+                return ResourceManager.GetString("T7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw4128\pich3096\picwgoal2340\pichgoal1755 
+        ///010009000003f02500000000c725000000000400000003010800050000000b0200000000050000
+        ///000c0275009c00030000001e0004000000070104000400000007010400c7250000410b2000cc00
+        ///75009c000000000075009c0000000000280000009c000000750000000100080000000000000000
+        ///0000000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T8 {
+            get {
+                return ResourceManager.GetString("T8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw3784\pich1931\picwgoal2145\pichgoal1095 
+        ///010009000003d21600000000a916000000000400000003010800050000000b0200000000050000
+        ///000c0249008f00030000001e0004000000070104000400000007010400a9160000410b2000cc00
+        ///49008f000000000049008f0000000000280000008f000000490000000100080000000000000000
+        ///0000000000000 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string T9 {
+            get {
+                return ResourceManager.GetString("T9", resourceCulture);
             }
         }
         
@@ -137,6 +307,20 @@ namespace VisualText.Properties {
             get {
                 object obj = ResourceManager.GetObject("UI_Transparent", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset0 Bahnschrift Light;}}
+        ///{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+        ///\pard\sa200\sl240\slmult1\f0\fs22\lang9{\pict{\*\picprop}\wmetafile8\picw15214\pich8996\picwgoal4725\pichgoal2957 
+        ///010009000003ca7b04000000a17b040000000400000003010800050000000b0200000000050000
+        ///000c0254013f02030000001e0004000000070104000400000007010400a17b0400410b2000cc00
+        ///54013f020000000054013f0200000000280000003f02000054010 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string WelcomeTutorial {
+            get {
+                return ResourceManager.GetString("WelcomeTutorial", resourceCulture);
             }
         }
         

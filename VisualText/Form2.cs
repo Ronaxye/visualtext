@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace VisualText
         saveTSMIC saveTSMIC = new saveTSMIC();
         basicDDBC basicDDBC = new basicDDBC();
         logicDDBC logicDDBC = new logicDDBC();
+        fileioDDBC fileioDDBC = new fileioDDBC();
+        useriDDBC useriDDBC = new useriDDBC();
         public static bool darkModeEnabled = true;
         int resizedXI, resizedXIII, resizedYI, resizedYIII, resized20, resized80;
         public static LinkedList<Button> blocks = new LinkedList<Button>();
@@ -85,6 +88,8 @@ namespace VisualText
             removeBorders();
             this.Resize += new System.EventHandler(this.onResize);
             Form2.resLabel.Visible = false;
+            tutorial tutorialW = new tutorial();
+            tutorialW.Show();
         }
 
         public void onResize(object sender, EventArgs e) {
@@ -118,13 +123,22 @@ namespace VisualText
             Form2.resLabel.Location = new Point(resizedYI, resizedYIII);
             */
 
-            Form2.codeEditor.Location = new Point(4, 70);
-            Form2.codeEditor.Font = new Font("Courier New", 16);
-            Form2.codeEditor.Size = new Size((Form2.resX - resizedXI), (Form2.resY - resized20 - 5));
+            Form2.codeEditor.Location = new Point(4, 90);
+            Form2.codeEditor.Font = new Font("Courier New", 14);
+            Form2.codeEditor.Size = new Size((Form2.resX - resizedXI), (Form2.resY - resized20 - 25));
 
             Form2.codeOutput.Location = new Point(4, (Form2.resY - resized20 + 70));
-            Form2.codeOutput.Font = new Font("Consolas", 16);
+            Form2.codeOutput.Font = new Font("Consolas", 14);
             Form2.codeOutput.Size = new Size((Form2.resX), resized20 - 75);
+
+            Form2.INPUTBOX.Location = new Point((Form2.codeEditor.Location.X + Form2.codeEditor.Size.Width + 12), (Form2.codeEditor.Location.Y + Form2.codeEditor.Size.Height - 25));
+            Form2.INPUTBOX.Size = new Size((resized25 - 99), 25);
+            Form2.INPUTBOX.BackColor = Color.Black;
+            Form2.INPUTBOX.ForeColor = Color.Black;
+            Form2.INPUTBTN.Location = new Point((Form2.INPUTBOX.Location.X + Form2.INPUTBOX.Size.Width + 12), (Form2.codeEditor.Location.Y + Form2.codeEditor.Size.Height - 26));
+            Form2.INPUTBTN.Size = new Size(25, 25);
+            Form2.INPUTBTN.BackColor = Color.Black;
+            Form2.INPUTBTN.ForeColor = Color.White;
            
             //this.FormBorderStyle = FormBorderStyle.Sizable;
 
@@ -135,6 +149,10 @@ namespace VisualText
             {
                 Form2.blocks.ElementAt(i).Location = new Point((resized75 + 12), Form2.blocks.ElementAt(i).Location.Y);
                 Form2.blocks.ElementAt(i).Size = new Size((resized25 - 50), Form2.blocks.ElementAt(i).Size.Height);
+                while (Form2.blocks.ElementAt(i).Width < System.Windows.Forms.TextRenderer.MeasureText(Form2.blocks.ElementAt(i).Text, new Font(Form2.blocks.ElementAt(i).Font.FontFamily, Form2.blocks.ElementAt(i).Font.Size, Form2.blocks.ElementAt(i).Font.Style)).Width)
+                {
+                    Form2.blocks.ElementAt(i).Font = new Font(Form2.blocks.ElementAt(i).Font.FontFamily, Form2.blocks.ElementAt(i).Font.Size - 0.5f, Form2.blocks.ElementAt(i).Font.Style);
+                }
             }
         }
 
@@ -144,14 +162,19 @@ namespace VisualText
             this.Controls.Add(Form2.resLabel);
             this.Controls.Add(Form2.codeEditor);
             this.Controls.Add(Form2.codeOutput);
+            Form2.INPUTBOX.Visible = false;
+            Form2.INPUTBTN.Visible = false;
+        }
+
+        public void launchTutorial(object sender, EventArgs e)
+        {
+            Debug.WriteLine("test");
+            tutorial tutorial = new tutorial();
+            tutorial.Show();
+            tutorial.Location = new Point(100, 100);
         }
 
         #region menu one
-
-        public void startScan(object sender, EventArgs e) {
-            scanCode.start();
-        }
-
         public class tsRenderer : ToolStripSystemRenderer
         {
             public tsRenderer() { }
@@ -196,6 +219,21 @@ namespace VisualText
             maxTTSB.Image = global::VisualText.Properties.Resources.transparentsquare;
             closeTTSB.Image = global::VisualText.Properties.Resources.transparentx;
             useriDDB.Image = global::VisualText.Properties.Resources.transparentui;
+            for (int i = 0; i < Form2.blocks.Count(); ++i)
+            {
+                if (Form2.blocks.ElementAt(i).BackColor.Equals(ColorTranslator.FromHtml("#0fd411")))
+                {
+                    Form2.blocks.ElementAt(i).BackColor = ColorTranslator.FromHtml("#1f7a20");
+                }
+                if (Form2.blocks.ElementAt(i).BackColor.Equals(ColorTranslator.FromHtml("#3b5bff")))
+                {
+                    Form2.blocks.ElementAt(i).BackColor = ColorTranslator.FromHtml("#001fbd");
+                }
+                if (Form2.blocks.ElementAt(i).BackColor.Equals(ColorTranslator.FromHtml("#d226fc")))
+                {
+                    Form2.blocks.ElementAt(i).BackColor = ColorTranslator.FromHtml("#a108c7");
+                }
+            }
         } //it's the law!
 
         public void activateLightMode()
@@ -216,6 +254,22 @@ namespace VisualText
             maxTTSB.Image = global::VisualText.Properties.Resources.Windowed_transparent;
             closeTTSB.Image = global::VisualText.Properties.Resources.X_transparent2;
             useriDDB.Image = global::VisualText.Properties.Resources.UI_Transparent;
+            for (int i = 0; i < Form2.blocks.Count(); ++i)
+            {
+                if (Form2.blocks.ElementAt(i).BackColor.Equals(ColorTranslator.FromHtml("#1f7a20")))
+                {
+                    Form2.blocks.ElementAt(i).BackColor = ColorTranslator.FromHtml("#1f7a20");
+                }
+                if (Form2.blocks.ElementAt(i).BackColor.Equals(ColorTranslator.FromHtml("#001fbd")))
+                {
+                    Form2.blocks.ElementAt(i).BackColor = ColorTranslator.FromHtml("#001fbd");
+                }
+                if (Form2.blocks.ElementAt(i).BackColor.Equals(ColorTranslator.FromHtml("#a108c7")))
+                {
+                    Form2.blocks.ElementAt(i).BackColor = ColorTranslator.FromHtml("#a108c7");
+                }
+                Form2.blocks.ElementAt(i).ForeColor = ColorTranslator.FromHtml("#FFFFFF");
+            }
         } //light mode isn't that bad tbh
 
         public async void removeBorders()
@@ -246,6 +300,12 @@ namespace VisualText
         }
         public void closeW(object sender, EventArgs e)
         {
+            /*
+            if (Form2.filePath.Equals(""))
+            {
+                saveTSMIC.saveTSMIF();
+            }
+            */
             Application.Exit();
         }
         #endregion
@@ -289,6 +349,11 @@ namespace VisualText
             basicDDBC.printlnTSMIF();
         }
 
+        public void printvarTSMIF(object sender, EventArgs e)
+        {
+            basicDDBC.printvarTSMIF();
+        }
+
         public void inputTSMIF(object sender, EventArgs e)
         {
             basicDDBC.inputTSMIF();
@@ -316,12 +381,12 @@ namespace VisualText
 
         public void modSTSMIF(object sender, EventArgs e)
         {
-            basicDDBC.mathTSMISC.mathPwr();
+            basicDDBC.mathTSMISC.mathMod();
         }
 
         public void sqrtSTSMIF(object sender, EventArgs e)
         {
-            basicDDBC.mathTSMISC.mathPwr();
+            basicDDBC.mathTSMISC.mathSqrt();
         }
 
         public void pwrSTSMIF(object sender, EventArgs e)
@@ -398,9 +463,34 @@ namespace VisualText
             logicDDBC.forTSMIF();
         }
 
+        private void whileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logicDDBC.whileTSMIF();
+        }
+
         public void fileioDDBF(object sender, EventArgs e)
         {
 
+        }
+
+        public void createFileToolStripMenuItemF(object sender, EventArgs e)
+        {
+            fileioDDBC.createFile();
+        }
+
+        public void writeToFileToolStripMenuItemF(object sender, EventArgs e)
+        {
+            fileioDDBC.createDirectory();
+        }
+
+        public void readFromFileToolStripMenuItemF(object sender, EventArgs e)
+        {
+            fileioDDBC.writeFile();
+        }
+
+        public void createDirectoryToolStripMenuItemF(object sender, EventArgs e)
+        {
+            fileioDDBC.readFile();
         }
 
         public void oopDDBF(object sender, EventArgs e)
@@ -409,6 +499,31 @@ namespace VisualText
         }
 
         public void useriDDBF(object sender, EventArgs e)
+        {
+
+        }
+
+        public void newWindowToolStripMenuItemF(object sender, EventArgs e)
+        {
+
+        }
+
+        public void newButtonToolStripMenuItemF(object sender, EventArgs e)
+        {
+
+        }
+
+        public void newLabelToolStripMenuItemF(object sender, EventArgs e)
+        {
+
+        }
+
+        public void newImageToolStripMenuItemF(object sender, EventArgs e)
+        {
+
+        }
+
+        public void newTextBoxToolStripMenuItemF(object sender, EventArgs e)
         {
 
         }

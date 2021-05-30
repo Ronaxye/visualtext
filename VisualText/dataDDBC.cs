@@ -9,7 +9,7 @@ namespace VisualText
     class dataDDBC
     {
         public static void newString() {
-            Form2.codeEditor.Text += ("string variableName = value;" + "\n");
+            Form2.codeEditor.Text += ("\n" + "string variableName = value;");
         }
 
         /*
@@ -42,65 +42,65 @@ namespace VisualText
 
         public static void newInt()
         {
-            Form2.codeEditor.Text += ("int variableName = value;" + "\n");
+            Form2.codeEditor.Text += ("\nint variableName = value;");
         }
 
         public static void newLong()
         {
-            Form2.codeEditor.Text += ("long variableName = value;" + "\n");
+            Form2.codeEditor.Text += ("\nlong variableName = value;");
         }
 
         public static void newDouble()
         {
-            Form2.codeEditor.Text += ("double variableName = value;" + "\n");
+            Form2.codeEditor.Text += ("\ndouble variableName = value;");
         }
 
         public static void newBoolean()
         {
-            Form2.codeEditor.Text += ("boolean variableName = value;" + "\n");
+            Form2.codeEditor.Text += ("\nboolean variableName = value;");
         }
         public static void newArray()
         {
-            Form2.codeEditor.Text += ("type[numberOfSlots] arrayName;" + "\n");
-            Form2.codeEditor.Text += ("arrayName[slotNumber] = value;" + "\n");
+            Form2.codeEditor.Text += ("\ntype[numberOfSlots] arrayName;");
+            Form2.codeEditor.Text += ("\narrayName[slotNumber] = value;");
         }
 
         public static class newLinkedList {
             public static void create() {
-                Form2.codeEditor.Text += ("LinkedList<type> listName;" + "\n");
+                Form2.codeEditor.Text += ("\nLinkedList<type> listName;");
             }
             public static void add()
             {
-                Form2.codeEditor.Text += ("listName.add(data/variable of matching type);" + "\n");
+                Form2.codeEditor.Text += ("\nlistName.add(data/variable of matching type);");
             }
             public static void readIndex()
             {
-                Form2.codeEditor.Text += ("listName.read(slotNumber);" + "\n");
+                Form2.codeEditor.Text += ("\nlistName.read(slotNumber);");
             }
             public static void removeIndex()
             {
-                Form2.codeEditor.Text += ("listName.remove(slotNumber);" + "\n");
+                Form2.codeEditor.Text += ("\nlistName.remove(slotNumber);");
             }
         }
 
         public static class newDictionary {
             public static void create() {
-                Form2.codeEditor.Text += ("Dictionary<type> dictionaryName;");
+                Form2.codeEditor.Text += ("\nDictionary<type> dictionaryName;");
             }
 
             public static void addPair()
             {
-                Form2.codeEditor.Text += ("dictionaryName.add(key/word, value/definition);");
+                Form2.codeEditor.Text += ("\n.add(key/word, value/definition);");
             }
 
             public static void getValue()
             {
-                Form2.codeEditor.Text += ("dictionaryName.getValue(key);");
+                Form2.codeEditor.Text += ("\ndictionaryName.getValue(key);");
             }
 
             public static void removePair()
             {
-                Form2.codeEditor.Text += ("dictionaryName.remove(key);");
+                Form2.codeEditor.Text += ("\ndictionaryName.remove(key);");
             }
         }
     }

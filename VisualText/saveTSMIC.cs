@@ -35,9 +35,9 @@ namespace VisualText
         }
 
         public async void displaySaved() {
-            //Form2.openfileTTSL.Text = ("[ SAVED ] Currently open file: " + Form2.filePath);
+            Form2.openfileTTSL.Text = ("[ SAVED ] Currently open file: " + Form2.filePath);
             await Task.Delay(5000);
-            //Form2.openfileTTSL.Text = ("Currently open file: " + Form2.filePath);
+            Form2.openfileTTSL.Text = ("Currently open file: " + Form2.filePath);
         }
     }
 }

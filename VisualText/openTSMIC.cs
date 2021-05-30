@@ -24,7 +24,7 @@ namespace VisualText
                     string line = File.ReadLines(Form2.filePath).Skip(i).Take(1).First();
                     Form2.codeEditor.Text += (line + "\n");
                 }
-                //Form2.openfileTTSL.Text = ("Currently open file: " + Form2.filePath);
+                Form2.openfileTTSL.Text = ("Currently open file: " + Form2.filePath);
             }
             catch (Exception Ex) {
                 Form2.resLabel.Text = "An error occured.";

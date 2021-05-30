@@ -10,7 +10,12 @@ namespace VisualText
     {
         public void forTSMIF()
         {
-            Form2.codeEditor.Text += ("for i in range (min, max): (code to loop);");
+            Form2.codeEditor.Text += ("\nfor i in range (min, max) :: function 1 : function 2 : function 3 : etc");
+        }
+
+        public void whileTSMIF()
+        {
+            Form2.codeEditor.Text += ("\nwhile (argument) :: function 1 : function 2 : function 3 : etc");
         }
     }
 }

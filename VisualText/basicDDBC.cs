@@ -10,28 +10,28 @@ namespace VisualText
     {
         public void printTSMIF()
         {
-            Form2.codeEditor.Text += ("print(your text here);" + "\n");
+            Form2.codeEditor.Text += ("\nprint(\"your text here\");");
         }
         
         public void printlnTSMIF()
         {
-            Form2.codeEditor.Text += ("println(your text here);" + "\n");
+            Form2.codeEditor.Text += ("\nprintln(\"your text here\");");
         }
 
         public void printvarTSMIF()
         {
-            Form2.codeEditor.Text += ("printvar(variable name);");
+            Form2.codeEditor.Text += ("\nprintvar(variable name);");
         }
 
         public void inputTSMIF()
         {
-            Form2.codeEditor.Text += ("input(type);" + "\n");
+            Form2.codeEditor.Text += ("\ninput : type : variable_name;");
         }
 
         public static class mathTSMISC {
             public static void mathAdd()
             {
-                Form2.codeEditor.Text += ("add(num1, num2);" + "\n");
+                Form2.codeEditor.Text += ("\nadd(num1, num2);");
             }
             public static void mathSub()
             {
