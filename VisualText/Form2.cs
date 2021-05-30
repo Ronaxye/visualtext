@@ -184,8 +184,8 @@ namespace VisualText
             toolStrip1.BackColor = ColorTranslator.FromHtml("#303030");
             toolStrip2.ForeColor = ColorTranslator.FromHtml("#e2e2e2");
             toolStrip2.BackColor = ColorTranslator.FromHtml("#282828");
-            this.ForeColor = ColorTranslator.FromHtml("#e2e2e2");
-            this.BackColor = ColorTranslator.FromHtml("#202020");// we can do it like scratch, logic can bve a colo9r, ui can be another etc //yea that would work
+            this.ForeColor = ColorTranslator.FromHtml("#e2e2e2");// save it somewhere. 
+            this.BackColor = ColorTranslator.FromHtml("#202020");// we can do it like scratch, logic can bve a colour, ui can be another etc //yea that would work
             Form2.codeEditor.ForeColor = ColorTranslator.FromHtml("#e3e3e3");
             Form2.codeEditor.BackColor = ColorTranslator.FromHtml("#252525");
             Form2.codeOutput.ForeColor = ColorTranslator.FromHtml("#e3e3e3");

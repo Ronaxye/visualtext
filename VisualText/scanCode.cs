@@ -16,6 +16,28 @@ namespace VisualText
         public static int numberOfLines = 0;
         public static int blockIndex = 0;
         public static bool isInsideForLoop = false;
+        //original.SplitByFirst("keyword");
+
+        public static string[] SplitByFirst(this string original, string keyword)
+        {
+            string[] result = new string[2];
+            string aVariable = original;
+            for (int i = 0; i < original.Length; ++i)
+            {
+                if (aVariable.StartsWith(keyword))
+                {
+                    result[0] = original.Substring(0, i);
+                    result[1] = original.Remove(0, i);
+                    break;
+                }
+                else
+                {
+                    aVariable.Remove(0, 1);
+                }
+            }
+
+            return result;
+        }
 
         public static void start()
         {
@@ -279,8 +301,11 @@ namespace VisualText
         {
             public static void newFor(string curLine)
             {
-                //i || min || max||print("hi");
-                string[] PARAMETERS_CODETOLOOP = curLine.Split(":");
+                //for i in range (3, 7) :: newmethod();
+                
+                // a ||  b  : c : d
+
+                string[] PARAMETERS_CODETOLOOP = curLine.Split("::");
                 PARAMETERS_CODETOLOOP[0].Trim();
                 PARAMETERS_CODETOLOOP[1].Trim();
 
@@ -364,6 +389,7 @@ namespace VisualText
             {
 
             }
+
         }
 
         public static class drawButton
