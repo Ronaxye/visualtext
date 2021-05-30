@@ -15,6 +15,7 @@ namespace VisualText
         public static int lineNumber = 0;
         public static int numberOfLines = 0;
         public static int blockIndex = 0;
+        public static bool isInsideForLoop = false;
 
         public static void start()
         {
@@ -117,6 +118,13 @@ namespace VisualText
             else if (curLine.StartsWith("boolean"))
             {
                 data.newBoolean(curLine);
+            }
+            else if (curLine.StartsWith("for"))
+            {
+                logic.newFor(curLine);
+            }
+            else if (curLine.StartsWith("while")) { 
+                logic.newWhile(curLine);
             }
         }
 
@@ -267,6 +275,97 @@ namespace VisualText
             }
         }
 
+        public static class logic
+        {
+            public static void newFor(string curLine)
+            {
+                //i || min || max||print("hi");
+                string[] PARAMETERS_CODETOLOOP = curLine.Split(":");
+                PARAMETERS_CODETOLOOP[0].Trim();
+                PARAMETERS_CODETOLOOP[1].Trim();
+
+                PARAMETERS_CODETOLOOP[0].Replace("for", "");
+                PARAMETERS_CODETOLOOP[0].Replace("in", "");
+                PARAMETERS_CODETOLOOP[0].Replace("range", "");
+                PARAMETERS_CODETOLOOP[0].Replace(" ", "");
+
+                //scanCode.determine(PARAMETERS_CODETOLOOP[1].Trim());
+                //Debug.WriteLine(PARAMETERS_CODETOLOOP[1].Trim());
+
+                string[] VARNAME_CONSTRAINTS = PARAMETERS_CODETOLOOP[0].Split("(");
+                VARNAME_CONSTRAINTS[1] = VARNAME_CONSTRAINTS[1].Replace(")", "");
+                string[] MIN_MAX = VARNAME_CONSTRAINTS[1].Split(",");
+                int min = int.Parse(MIN_MAX[0]);
+                int max = int.Parse(MIN_MAX[1]);
+                int timesToLoop = max - min + 1;
+
+                Debug.WriteLine(min + " " + max + " " + timesToLoop + " " + PARAMETERS_CODETOLOOP[1].Trim());
+
+                isInsideForLoop = true;
+                for (int i = 0; i < timesToLoop; ++i)
+                {
+                    scanCode.determine(PARAMETERS_CODETOLOOP[1].Trim());
+                }
+                isInsideForLoop = false;
+
+                drawButton.forB(timesToLoop, PARAMETERS_CODETOLOOP[1]);
+
+
+
+
+                /*
+                string[] seperatedA = curLine.Split(":").ToArray();    // A[0 // 1] [ for (int i = 0, i < 10, ++i // println("h i"); );]
+                seperatedA[0].Replace(" ", "").Remove(0, 4).Trim();    // A[0 // 1] [inti=0,i<10,++i// println("h i"); );]
+                seperatedA[1].Remove(seperatedA[1].Length - 2).Trim(); // A[0 // 1] [inti=0,i<10,++i//println("h i");] //END RESULT
+                string[] seperatedB = seperatedA[0].Split(",").ToArray(); // B [0 // 1 // 2] [inti=0//i<10//++i]
+                string type;
+                if (seperatedB[0].StartsWith("int"))
+                {
+                    type = "int";
+                    seperatedB[0] = seperatedB[0].Remove(0, 3); // B [0 // 1 // 2] [i=0//i<10//++i]
+                }
+                else if (seperatedB[0].StartsWith("double"))
+                {
+                    type = "double";
+                    seperatedB[0] = seperatedB[0].Remove(0, 6);
+                }
+                
+                string[] temp = seperatedB[0].Split("=").ToArray(); // temp [0 // 1] [i//0]
+                string varName = temp[0];
+                double startNum = double.Parse(temp[1]);
+                double constraint = double.Parse(seperatedB[1].Remove(0, varName.Length)); // B [0 // 1 // 2] [i=0//<10//++i]
+                double interval = 0;
+
+                if (seperatedB[2].Contains("++"))
+                {
+                    interval = 1.0;
+                }
+                else if (seperatedB[2].Contains("--"))
+                {
+                    interval = -1.0;
+                }
+                else if (seperatedB[2].Contains("+="))
+                {
+                    interval = double.Parse(seperatedA[2].Remove(0, varName.Length).Replace("+=", ""));
+                }
+                else if (seperatedB[2].Contains("-="))
+                {
+                    interval = 0 - double.Parse(seperatedA[2].Remove(0, varName.Length).Replace("-=", ""));
+                }
+                
+                for (double i = startNum; i < constraint; i += interval)
+                {
+                    scanCode.determine(seperatedA[1]);
+                }
+                */
+            }
+
+            public static void newWhile(string newCurLine)
+            {
+
+            }
+        }
+
         public static class drawButton
         {
             static double resized25a = (Form2.resX * 0.25);
@@ -276,151 +375,201 @@ namespace VisualText
 
             public static void print(string newCurLine)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 30);
-                newBlock.Text = ("Output " + newCurLine);
-                newBlock.Font = new Font("Bahnschrift", 12);
-                Form2.blocks.AddLast(newBlock);
-                ++blockIndex;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Output " + newCurLine);
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
             }
             public static void println(string newCurLine)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 30);
-                newBlock.Text = ("Output " + newCurLine + " to a new line");
-                newBlock.Font = new Font("Bahnschrift", 12);
-                Form2.blocks.AddLast(newBlock);
-                ++blockIndex;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Output " + newCurLine + " to a new line");
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
             }
 
             public static void addB(string[] aBunchOfVariables)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 60);
-                newBlock.Text = ("Add ");
-                for (int i = 0; i < aBunchOfVariables.Length; ++i)
+                if (!isInsideForLoop)
                 {
-                    newBlock.Text += aBunchOfVariables[i].ToString() + ", ";
-                    if (i == 3)
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Add ");
+                    for (int i = 0; i < aBunchOfVariables.Length; ++i)
                     {
-                        newBlock.Text += "\n";
+                        newBlock.Text += aBunchOfVariables[i].ToString() + ", ";
+                        if (i == 3)
+                        {
+                            newBlock.Text += "\n";
+                        }
                     }
+                    newBlock.Text += ("\n together");
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
                 }
-                newBlock.Text += ("\n together");
-                newBlock.Font = new Font("Bahnschrift", 12);
-                Form2.blocks.AddLast(newBlock);
-                blockIndex += 2;
             }
 
             public static void subB(string[] aBunchOfVariables)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 30);
-                newBlock.Text = ("Subtract " + aBunchOfVariables[0] + " from " + aBunchOfVariables[1]);
-                newBlock.Font = new Font("Bahnschrift", 12);
-                Form2.blocks.AddLast(newBlock);
-                ++blockIndex;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Subtract " + aBunchOfVariables[0] + " from " + aBunchOfVariables[1]);
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
             }
 
             public static void multiB(string[] aBunchOfVariables)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 60);
-                newBlock.Text = ("Multiply ");
-                for (int i = 0; i < aBunchOfVariables.Length; ++i)
+                if (!isInsideForLoop)
                 {
-                    newBlock.Text += aBunchOfVariables[i].ToString() + ", ";
-                    if (i == 3)
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Multiply ");
+                    for (int i = 0; i < aBunchOfVariables.Length; ++i)
                     {
-                        newBlock.Text += "\n";
+                        newBlock.Text += aBunchOfVariables[i].ToString() + ", ";
+                        if (i == 3)
+                        {
+                            newBlock.Text += "\n";
+                        }
                     }
+                    newBlock.Text += ("\n together");
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
                 }
-                newBlock.Text += ("\n together");
-                newBlock.Font = new Font("Bahnschrift", 12);
-                Form2.blocks.AddLast(newBlock);
-                ++blockIndex;
             }
 
             public static void divB(string[] aBunchOfVariables)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 30);
-                newBlock.Text = ("Divide " + aBunchOfVariables[0] + " by " + aBunchOfVariables[1]);
-                newBlock.Font = new Font("Bahnschrift", 12);
-                Form2.blocks.AddLast(newBlock);
-                ++blockIndex;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Divide " + aBunchOfVariables[0] + " by " + aBunchOfVariables[1]);
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
             }
 
             public static void modB(string[] aBunchOfVariables)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 30);
-                newBlock.Text = ("Get " + aBunchOfVariables[0] + " modulo " + aBunchOfVariables[1]);
-                newBlock.Font = new Font("Bahnschrift", 12);
-                Form2.blocks.AddLast(newBlock);
-                ++blockIndex;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 30);
+                    newBlock.Text = ("Get " + aBunchOfVariables[0] + " modulo " + aBunchOfVariables[1]);
+                    newBlock.Font = new Font("Bahnschrift", 12);
+                    Form2.blocks.AddLast(newBlock);
+                    ++blockIndex;
+                }
             }
 
             public static void stringB(string index1, string index2)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 60);
-                newBlock.Text = ("Create a string called " + index1 + "\n and set its value to "  + index2);
-                newBlock.Font = new Font("Bahnschrift", 10);
-                Form2.blocks.AddLast(newBlock);
-                blockIndex += 2;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Create a string called " + index1 + "\n and set its value to " + index2);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
             }
 
             public static void intB(string index1, string index2)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 60);
-                newBlock.Text = ("Create an integer called " + index1 + "\n and set its value to " + index2);
-                newBlock.Font = new Font("Bahnschrift", 10);
-                Form2.blocks.AddLast(newBlock);
-                blockIndex += 2;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Create an integer called " + index1 + "\n and set its value to " + index2);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
             }
 
             public static void longB(string index1, string index2)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 60);
-                newBlock.Text = ("Create a big int called " + index1 + "\n and set its value to " + index2);
-                newBlock.Font = new Font("Bahnschrift", 10);
-                Form2.blocks.AddLast(newBlock);
-                blockIndex += 2;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Create a big int called " + index1 + "\n and set its value to " + index2);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
             }
 
             public static void doubleB(string index1, string index2)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 60);
-                newBlock.Text = ("Create a double called " + index1 + "\n and set its value to " + index2);
-                newBlock.Font = new Font("Bahnschrift", 10);
-                Form2.blocks.AddLast(newBlock);
-                blockIndex += 2;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Create a double called " + index1 + "\n and set its value to " + index2);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
             }
 
             public static void booleanB(string index1, string index2)
             {
-                Button newBlock = new Button();
-                newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
-                newBlock.Size = new Size((resized25 - 50), 60);
-                newBlock.Text = ("Create a boolean called " + index1 + "\n and set its value to " + index2);
-                newBlock.Font = new Font("Bahnschrift", 10);
-                Form2.blocks.AddLast(newBlock);
-                blockIndex += 2;
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Create a boolean called " + index1 + "\n and set its value to " + index2);
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
+            }
+
+            public static void forB(int numOfTimesToRun, string codeToLoop)
+            {
+                if (!isInsideForLoop)
+                {
+                    Button newBlock = new Button();
+                    newBlock.Location = new Point((resized75 + 12), (70 + (scanCode.blockIndex * 30)));
+                    newBlock.Size = new Size((resized25 - 50), 60);
+                    newBlock.Text = ("Run " + codeToLoop.Trim() + "\n" + numOfTimesToRun + " Times");
+                    newBlock.Font = new Font("Bahnschrift", 10);
+                    Form2.blocks.AddLast(newBlock);
+                    blockIndex += 2;
+                }
             }
         }
     }

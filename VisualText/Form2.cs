@@ -22,6 +22,7 @@ namespace VisualText
         openTSMIC openTSMIC = new openTSMIC();
         saveTSMIC saveTSMIC = new saveTSMIC();
         basicDDBC basicDDBC = new basicDDBC();
+        logicDDBC logicDDBC = new logicDDBC();
         public static bool darkModeEnabled = true;
         int resizedXI, resizedXIII, resizedYI, resizedYIII, resized20, resized80;
         public static LinkedList<Button> blocks = new LinkedList<Button>();
@@ -83,6 +84,7 @@ namespace VisualText
             activateDarkMode();
             removeBorders();
             this.Resize += new System.EventHandler(this.onResize);
+            Form2.resLabel.Visible = false;
         }
 
         public void onResize(object sender, EventArgs e) {
@@ -94,6 +96,11 @@ namespace VisualText
             double resizedXII = (Form2.resX * 0.75);
             resizedXIII = (int)resizedXII;
 
+            double resized25a = (Form2.resX * 0.25);
+            int resized25 = (int)resized25a;
+            double resized75a = (Form2.resX * 0.75);
+            int resized75 = (int)resized75a;
+
             double resizedY = (Form2.resX * 0.8);
             resizedYI = (int)resizedY;
             double resizedYII = (Form2.resY * 0.33);
@@ -104,10 +111,12 @@ namespace VisualText
             double resized80a = (Form2.resY * 0.83);
             resized80 = (int)resized80a;
 
+            /*
             Form2.resLabel.Text = (Form2.resX + "x" + Form2.resY);
             Form2.resLabel.Font = new Font("Segoe UI Light", 16);
             Form2.resLabel.Size = new Size(1000, 100);
             Form2.resLabel.Location = new Point(resizedYI, resizedYIII);
+            */
 
             Form2.codeEditor.Location = new Point(4, 70);
             Form2.codeEditor.Font = new Font("Courier New", 16);
@@ -121,6 +130,12 @@ namespace VisualText
 
             this.pictureBox1.Location = new Point(resX - 16, resY - 16);
             this.pictureBox1.Size = new Size(16, 16);
+
+            for (int i = 0; i < Form2.blocks.Count(); ++i)
+            {
+                Form2.blocks.ElementAt(i).Location = new Point((resized75 + 12), Form2.blocks.ElementAt(i).Location.Y);
+                Form2.blocks.ElementAt(i).Size = new Size((resized25 - 50), Form2.blocks.ElementAt(i).Size.Height);
+            }
         }
 
         public void onLoad() {
@@ -170,7 +185,7 @@ namespace VisualText
             toolStrip2.ForeColor = ColorTranslator.FromHtml("#e2e2e2");
             toolStrip2.BackColor = ColorTranslator.FromHtml("#282828");
             this.ForeColor = ColorTranslator.FromHtml("#e2e2e2");
-            this.BackColor = ColorTranslator.FromHtml("#202020");
+            this.BackColor = ColorTranslator.FromHtml("#202020");// we can do it like scratch, logic can bve a colo9r, ui can be another etc //yea that would work
             Form2.codeEditor.ForeColor = ColorTranslator.FromHtml("#e3e3e3");
             Form2.codeEditor.BackColor = ColorTranslator.FromHtml("#252525");
             Form2.codeOutput.ForeColor = ColorTranslator.FromHtml("#e3e3e3");
@@ -231,7 +246,7 @@ namespace VisualText
         }
         public void closeW(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
         #endregion
 
@@ -253,7 +268,7 @@ namespace VisualText
 
         public void closeTSMIF(object sender, EventArgs e)
         {
-            this.Close();
+            closeTSMIC.closeTSMIF();
         }
 
         /// <summary>
@@ -378,6 +393,11 @@ namespace VisualText
 
         }
 
+        private void forToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            logicDDBC.forTSMIF();
+        }
+
         public void fileioDDBF(object sender, EventArgs e)
         {
 
@@ -402,30 +422,16 @@ namespace VisualText
                 blocks.ElementAt(i).Visible = false;
             }
             blocks.Clear();
+            Form2.codeOutput.Text = "";
             scanCode.blockIndex = 0;
             scanCode.start();
+            drawBlocks();
         }
-        public void drawBlocks(object sender, EventArgs e) {
+        public void drawBlocks() {
             int numOfElements = blocks.Count();
             for (int i = 0; i < numOfElements; ++i) {
                 this.Controls.Add(blocks.ElementAt(i));
             }
-        }
-
-        public void outputString(string toOutput)
-        {
-            Form2.codeOutput.Text += toOutput + "\n";
-        }
-
-        public static async void clearBlocks() {
-            int numOfElements = blocks.Count();
-            for (int i = 0; i < numOfElements; ++i)
-            {
-                blocks.ElementAt(i).Visible = false;
-            }
-            await Task.Delay(3000);
-            blocks.Clear();
-            await Task.Delay(3000);
         }
         #endregion
     }

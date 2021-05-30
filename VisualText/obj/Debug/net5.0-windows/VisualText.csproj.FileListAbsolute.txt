@@ -19,3 +19,4 @@ C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.dll
 C:\VisualText\VisualText\obj\Debug\net5.0-windows\ref\VisualText.dll
 C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.pdb
 C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.genruntimeconfig.cache
+C:\VisualText\VisualText\obj\Debug\net5.0-windows\VisualText.splashScreen.resources

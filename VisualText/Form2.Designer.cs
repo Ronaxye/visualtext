@@ -79,6 +79,17 @@ namespace VisualText
             this.linkedListVTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.dictionaryVTSMI = new System.Windows.Forms.ToolStripMenuItem();
             this.logicDDB = new System.Windows.Forms.ToolStripDropDownButton();
+            this.forToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ifToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.elseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.elseToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.booleanOperatorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.equalsToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notEqualToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lessThanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.greaterThanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileioDDB = new System.Windows.Forms.ToolStripDropDownButton();
             this.oopDDB = new System.Windows.Forms.ToolStripDropDownButton();
             this.useriDDB = new System.Windows.Forms.ToolStripDropDownButton();
@@ -158,7 +169,6 @@ namespace VisualText
             this.stopBtn.Name = "stopBtn";
             this.stopBtn.Size = new System.Drawing.Size(32, 32);
             this.stopBtn.Text = "toolStripButton1";
-            this.stopBtn.Click += new System.EventHandler(this.drawBlocks);
             // 
             // toolStripSeparator5
             // 
@@ -468,12 +478,93 @@ namespace VisualText
             // 
             // logicDDB
             // 
+            this.logicDDB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.forToolStripMenuItem,
+            this.whileToolStripMenuItem,
+            this.ifToolStripMenuItem,
+            this.booleanOperatorsToolStripMenuItem});
             this.logicDDB.Image = ((System.Drawing.Image)(resources.GetObject("logicDDB.Image")));
             this.logicDDB.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.logicDDB.Name = "logicDDB";
             this.logicDDB.Size = new System.Drawing.Size(72, 27);
             this.logicDDB.Text = "Logic";
             this.logicDDB.Click += new System.EventHandler(this.logicDDBF);
+            // 
+            // forToolStripMenuItem
+            // 
+            this.forToolStripMenuItem.Name = "forToolStripMenuItem";
+            this.forToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.forToolStripMenuItem.Text = "For";
+            this.forToolStripMenuItem.Click += new System.EventHandler(this.forToolStripMenuItem_Click);
+            // 
+            // whileToolStripMenuItem
+            // 
+            this.whileToolStripMenuItem.Name = "whileToolStripMenuItem";
+            this.whileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.whileToolStripMenuItem.Text = "While";
+            // 
+            // ifToolStripMenuItem
+            // 
+            this.ifToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.elseToolStripMenuItem,
+            this.elseToolStripMenuItem1,
+            this.elseToolStripMenuItem2});
+            this.ifToolStripMenuItem.Name = "ifToolStripMenuItem";
+            this.ifToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ifToolStripMenuItem.Text = "If/Else if/Else";
+            // 
+            // elseToolStripMenuItem
+            // 
+            this.elseToolStripMenuItem.Name = "elseToolStripMenuItem";
+            this.elseToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
+            this.elseToolStripMenuItem.Text = "If";
+            // 
+            // elseToolStripMenuItem1
+            // 
+            this.elseToolStripMenuItem1.Name = "elseToolStripMenuItem1";
+            this.elseToolStripMenuItem1.Size = new System.Drawing.Size(104, 22);
+            this.elseToolStripMenuItem1.Text = "Else if";
+            // 
+            // elseToolStripMenuItem2
+            // 
+            this.elseToolStripMenuItem2.Name = "elseToolStripMenuItem2";
+            this.elseToolStripMenuItem2.Size = new System.Drawing.Size(104, 22);
+            this.elseToolStripMenuItem2.Text = "Else";
+            // 
+            // booleanOperatorsToolStripMenuItem
+            // 
+            this.booleanOperatorsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.equalsToToolStripMenuItem,
+            this.notEqualToToolStripMenuItem,
+            this.lessThanToolStripMenuItem,
+            this.greaterThanToolStripMenuItem});
+            this.booleanOperatorsToolStripMenuItem.Name = "booleanOperatorsToolStripMenuItem";
+            this.booleanOperatorsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.booleanOperatorsToolStripMenuItem.Text = "Boolean operators";
+            // 
+            // equalsToToolStripMenuItem
+            // 
+            this.equalsToToolStripMenuItem.Name = "equalsToToolStripMenuItem";
+            this.equalsToToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.equalsToToolStripMenuItem.Text = "Equals to";
+            // 
+            // notEqualToToolStripMenuItem
+            // 
+            this.notEqualToToolStripMenuItem.Name = "notEqualToToolStripMenuItem";
+            this.notEqualToToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.notEqualToToolStripMenuItem.Text = "Not equal to";
+            // 
+            // lessThanToolStripMenuItem
+            // 
+            this.lessThanToolStripMenuItem.Name = "lessThanToolStripMenuItem";
+            this.lessThanToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.lessThanToolStripMenuItem.Text = "Less than";
+            // 
+            // greaterThanToolStripMenuItem
+            // 
+            this.greaterThanToolStripMenuItem.Name = "greaterThanToolStripMenuItem";
+            this.greaterThanToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.greaterThanToolStripMenuItem.Text = "Greater than";
             // 
             // fileioDDB
             // 
@@ -491,7 +582,6 @@ namespace VisualText
             this.oopDDB.Name = "oopDDB";
             this.oopDDB.Size = new System.Drawing.Size(68, 27);
             this.oopDDB.Text = "OOP";
-            this.oopDDB.Click += new System.EventHandler(this.drawBlocks);
             // 
             // useriDDB
             // 
@@ -500,7 +590,6 @@ namespace VisualText
             this.useriDDB.Name = "useriDDB";
             this.useriDDB.Size = new System.Drawing.Size(115, 27);
             this.useriDDB.Text = "User Interface";
-            this.useriDDB.Click += new System.EventHandler(this.startScan);
             // 
             // toolStrip2
             // 
@@ -612,5 +701,16 @@ namespace VisualText
         private System.Windows.Forms.ToolStripButton runBtn;
         private System.Windows.Forms.ToolStripButton stopBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem ifToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem elseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem elseToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem elseToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem forToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem whileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem booleanOperatorsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem equalsToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem notEqualToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lessThanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem greaterThanToolStripMenuItem;
     }
 }
