@@ -5,3 +5,4 @@ Welcome to VisualText! This is a programming language that allows you to code po
 We didn't use much resources; 99% of it was coded by ourself. However, we will honour all the sites which which helped us:
 https://stackoverflow.com/questions/1592876/make-a-borderless-form-movable
 https://www.codeproject.com/Articles/11114/Move-window-form-without-Titlebar-in-C
+These two sites made moving/dragging the borderless windows around possible; to move the window, the user can drag the top menu bar (the one with the title).
